@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Start Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <label>当前温度</label>
+    <meter max="100" low="60" high="80" value="30" id="meter"></meter>
+ 
+    <script>
+      var client = new Paho.MQTT.Client("23.106.155.16", 8003, "clientId");
+ 
+      client.onMessageArrived = function (msg) {
+        document.querySelector("#meter").value = msg.payloadString;
+      };
+ 
+      client.connect({
+        onSuccess: function () {
+          client.subscribe("floor-5/temperature");
+        }
+      });
+    </script>
+  </body>
+</html>

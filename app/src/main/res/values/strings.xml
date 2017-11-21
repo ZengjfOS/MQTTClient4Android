@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">MQTT</string>
-    <string name="string_weichat">Publish</string>
-    <string name="string_friends">Subscribe</string>
-    <string name="string_found">Settings</string>
-    <string name="string_me">About</string>
+    <string name="string_weichat">Settings</string>
+    <string name="string_friends">Publish</string>
+    <string name="string_found">Subscribe</string>
+    <string name="string_me">Show</string>
 
     <string name="connect_status">Disconnect</string>
 

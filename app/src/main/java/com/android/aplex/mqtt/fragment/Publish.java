@@ -1,11 +1,13 @@
 package com.android.aplex.mqtt.fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.aplex.mqtt.MainActivity;
 import com.android.aplex.mqtt.R;
 
 
@@ -31,6 +33,7 @@ public class Publish extends BaseBlankFragment{
     @Override
     public void onPause() {
         super.onPause();
+
         Log.v(TAG, "onPause");
     }
 }

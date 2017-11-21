@@ -32,5 +32,6 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.lzy.widget:view-core:0.1.5'
     compile 'com.android.support:support-v4:24.2.1'
+    compile 'com.github.rey5137:material:1.2.4'
     testCompile 'junit:junit:4.12'
 }

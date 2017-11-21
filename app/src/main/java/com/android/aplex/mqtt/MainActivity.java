@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.android.aplex.mqtt.fragment.About;
+import com.android.aplex.mqtt.fragment.Show;
 import com.android.aplex.mqtt.fragment.BaseBlankFragment;
 import com.android.aplex.mqtt.fragment.Publish;
 import com.android.aplex.mqtt.fragment.Settings;
@@ -50,10 +50,10 @@ public class MainActivity extends AppCompatActivity implements BaseBlankFragment
         public MainAdapter(FragmentManager fm) {
             super(fm);
             try {
+                fragments.add(BaseBlankFragment.newInstance(Settings.class, null));
                 fragments.add(BaseBlankFragment.newInstance(Publish.class, null));
                 fragments.add(BaseBlankFragment.newInstance(Subscribe.class, null));
-                fragments.add(BaseBlankFragment.newInstance(Settings.class, null));
-                fragments.add(BaseBlankFragment.newInstance(About.class, null));
+                fragments.add(BaseBlankFragment.newInstance(Show.class, null));
             } catch (Exception e) {
                 e.printStackTrace();
             }
