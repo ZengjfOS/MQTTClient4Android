@@ -35,3 +35,4 @@
 
 * [../code/IoT_Hub/publish.py](../code/IoT_Hub/publish.py)
 * [../code/IoT_Hub/subscribe.py](../code/IoT_Hub/subscribe.py)
+* [IoT Hub python代码示例](https://cloud.baidu.com/doc/IOT/IOTService.html#.16.E9.B0.78.14.44.44.D9.38.48.96.FF.7C.DA.76.5F)
