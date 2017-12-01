@@ -14,6 +14,7 @@ MQTT基于TCP，实现了异步Pub/Sub。
 
 ## 二、Docs
 
+* [docs/0006_baidu_IoT_Hub_DB.md](docs/0006_baidu_IoT_Hub_DB.md)
 * [docs/0005_baidu_IoT_Hub.md](docs/0005_baidu_IoT_Hub.md)
 * [docs/0004_mosquitto_SSL_single_CA.md](docs/0004_mosquitto_SSL_single_CA.md)
 * [docs/0003_mosquitto_guide.md](docs/0003_mosquitto_guide.md)
