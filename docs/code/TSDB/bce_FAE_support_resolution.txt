@@ -1,0 +1,10 @@
+if __name__ == "__main__":
+    credentials = BceCredentials("AK","SK")
+    http_method = "GET"
+    path = "/v1/metric"
+    headers = {"host": "zengjf.tsdb.iot.gz.baidubce.com"}
+    params = {}
+    timestamp = 0
+    headers_to_sign = {"host"}
+    result = sign(credentials, http_method, path, headers, params, timestamp, 1800, headers_to_sign)
+    print result

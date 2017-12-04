@@ -8,6 +8,17 @@
 * [数据点查询](https://cloud.baidu.com/doc/TSDB/FAQ.html#.8D.F6.6D.4C.08.1F.0B.71.C4.09.87.F7.ED.BA.FD.39)
 * [如何获取AK / SK](https://cloud.baidu.com/doc/Reference/GetAKSK.html#.E5.A6.82.E4.BD.95.E8.8E.B7.E5.8F.96AK.20.2F.20SK)
 * [How do I manually fire HTTP POST requests with Firefox or Chrome? [closed]](https://stackoverflow.com/questions/4797534/how-do-i-manually-fire-http-post-requests-with-firefox-or-chrome)
+* [时序数据库深入浅出之存储篇](http://www.infoq.com/cn/articles/storage-in-sequential-databases)
+
+下面介绍下时序数据库的一些基本概念（不同的时序数据库称呼略有不同）。
+
+![../img/tsdb_talbe_format.jpg](../img/tsdb_talbe_format.jpg)
+
+* metric: 度量，相当于关系型数据库中的 table。
+* data point: 数据点，相当于关系型数据库中的 row。
+* timestamp：时间戳，代表数据点产生的时间。
+* field: 度量下的不同字段。比如位置这个度量具有经度和纬度两个 field。一般情况下存放的是会随着时间戳的变化而变化的数据。
+* tag: 标签，或者附加信息。一般存放的是并不随着时间戳变化的属性信息。timestamp 加上所有的 tags 可以认为是 table 的 primary key。
 
 
 ## 将消息转发至TSDB
@@ -76,3 +87,7 @@ TSDB数据库要求数据必须包含**metric**、**value**和**timestamp**三�
 [注意]
 
 这里面生成的Authorization可以在别的地方用，这里每次都生成签名，其实是不用每次都生成的。
+
+如下是百度FAE提供的签名函数方法：
+
+[../code/TSDB/bce_FAE_support_resolution.txt](../code/TSDB/bce_FAE_support_resolution.txt)
