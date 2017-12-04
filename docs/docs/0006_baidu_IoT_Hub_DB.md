@@ -67,8 +67,12 @@ TSDB数据库要求数据必须包含**metric**、**value**和**timestamp**三�
 
 具体合成算法，请参阅下面代码：
 
-[../code/TSDB/sign_sample.py]
+[../code/TSDB/sign_sample.py](../code/TSDB/sign_sample.py)
 
 测试代码：
 
-[../code/TSDB/http_get.py]
+[../code/TSDB/http_get.py](../code/TSDB/http_get.py)
+
+[注意]
+
+这里面生成的Authorization可以在别的地方用，这里每次都生成签名，其实是不用每次都生成的。
