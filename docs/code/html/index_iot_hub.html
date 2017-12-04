@@ -4,16 +4,22 @@
     <title>Start Page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" type="text/javascript"></script>
   </head>
   <body>
-    <label>当前温度</label>
+    <label>BCE IoT Hub</label>
     <!-- Eclipse Paho JavaScript Client 
         https://www.eclipse.org/paho/clients/js/
     -->
+    <div id="showContent">
+    </div>
  
     <script>
+        var div = document.getElementById('showContent');
+
         // Create a client instance
         var client = new Paho.MQTT.Client("zengjf.mqtt.iot.gz.baidubce.com", 8884, "DeviceId-egkn9o");
+        var server_connected = false;
         
         // set callback handlers
         client.onConnectionLost = onConnectionLost;
@@ -26,33 +32,71 @@
         // called when the client connects
         function onConnect() {
           // Once a connection has been made, make a subscription and send a message.
-          console.log("onConnect");
+          showMessageContent("onConnect:", "connect");
           client.subscribe("test-iot-service");
+          showMessageContent("subscribe:", "test-iot-service");
+
+          server_connected = true;
 
           topicMessage = new Paho.MQTT.Message("{message:This is a message where the topic is set by setTopic}");
           topicMessage.destinationName = "test-iot-service";    // 这里的topic一定要正确
-          client.send(topicMessage)
+          client.send(topicMessage);
         }
 
         // called when the client connects
         function onConnectError() {
           // Once a connection has been made, make a subscription and send a message.
-          console.log("onConnectError");
+          showMessageContent("onConnectError:", "Error");
         }
         
         // called when the client loses its connection
         function onConnectionLost(responseObject) {
           if (responseObject.errorCode !== 0) {
-            console.log("onConnectionLost:"+responseObject.errorMessage);
+            showMessageContent("onConnectionLost:", responseObject.errorMessage);
           }
         }
         
         // called when a message arrives
         function onMessageArrived(message) {
-          console.log("onMessageArrived:"+message.payloadString);
+          showMessageContent("onMessageArrived:", message.payloadString);
+        }
+
+        function showMessageContent(type, message) {
+          div.innerHTML += "<div style='background : #999;'>" + type + "</div>"
+          div.innerHTML += "<div>" + message + "</div>";
         }
  
-        console.log("MQTT Client Set Over, Wait Data Tranfer.")
+        showMessageContent("Content init Ready:", "MQTT Client Set Over, Wait Data Tranfer.");
+
+        var count = 0
+        function timedMsg()
+        {
+          if (server_connected) {
+            topicMessage = new Paho.MQTT.Message("{message:This is a message where the topic is set by setTopic}");
+            topicMessage.destinationName = "test-iot-service";    // 这里的topic一定要正确
+            client.send(topicMessage);
+            showMessageContent("sendTopicMessage:", topicMessage.payloadString);
+            
+            $.ajax({
+              url: 'http://zengjf.tsdb.iot.gz.baidubce.com/v1/metric',
+              type: 'GET',
+              headers : {
+                "Content-type": "application/json; charset=utf-8",
+                "Authorization": "bce-auth-v1/5c5b5ea289ed4c6db75c131e7eaf5715/2017-12-04T02:10:06Z/1800/host/3e9ac0600c241fb6684b9c0ee3dc3a0a6a9c87fad7d04a18b69eb89346482bf8"
+              },
+              success: function(data, status) { 
+                showMessageContent("TSDB:", "receive: " + status + "\n message: " + JSON.stringify(data));
+              }
+            });
+
+            if (count++ == 10)
+                return;
+          }
+
+          var t = setTimeout(timedMsg, 3000)
+        }
+        timedMsg();
+
     </script>
   </body>
 </html>

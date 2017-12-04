@@ -17,16 +17,20 @@ def patch_send():
 patch_send()
 
 # generate sign
-# credentials = BceCredentials("5c5b5ea289ed4c6db75c131e7eaf5715", "ca49ed4d426541e79f7da83fde4b9e28")
-credentials = BceCredentials("f73fdc86f0fa4624a7bfe9a59789378a", "2788f10a05c44c3d8ed0baa2155121bf")
+credentials = BceCredentials("5c5b5ea289ed4c6db75c131e7eaf5715", "ca49ed4d426541e79f7da83fde4b9e28")
 http_method = "GET"
 path = "/v1/metric"
-headers = {"host": "zengjf.tsdb.iot.gz.baidubce.com",
-    "content-type":"application/json; charset=utf-8",
-    "content-length":"0"}
+headers = {"host": "zengjf.tsdb.iot.gz.baidubce.com"
+    # "content-type":"application/json; charset=utf-8",
+    # "content-length":"0"
+}
 params = {}
-timestamp = int(time.time())
-result = sign(credentials, http_method, path, headers, None, timestamp)
+timestamp = 0 # int(time.time())
+headers_to_sign = {"host"}
+# 这里一定要注意这里的headers_to_sign，不写会导致
+#    403 Forbidden
+#    {"requestId":"e5218a3e-1c8d-422c-ae2d-547c3ddfb01a","code":"AccessDenied","message":"Verify access forbidden"}
+result = sign(credentials, http_method, path, headers, None, timestamp, 1800, headers_to_sign)
 print result
 print
 
@@ -34,8 +38,9 @@ print
 hdrs = {
     "Content-type": "application/json; charset=utf-8",
     "Authorization": result,
-    "content-length":"0",
-    "x-bce-date": '%sT%sZ' % (datetime.datetime.utcfromtimestamp(timestamp).strftime("%Y%m%d"), datetime.datetime.utcfromtimestamp(timestamp).strftime("%H%M%S"))
+    'Host': 'zengjf.tsdb.iot.gz.baidubce.com'
+    # "content-length":"0"，
+    # "x-bce-date": '%sT%sZ' % (datetime.datetime.utcfromtimestamp(timestamp).strftime("%Y%m%d"), datetime.datetime.utcfromtimestamp(timestamp).strftime("%H%M%S"))
 }
 conn = httplib.HTTPConnection("zengjf.tsdb.iot.gz.baidubce.com")
 conn.request("GET", "/v1/metric", headers = hdrs)
@@ -47,29 +52,18 @@ conn.close()
 
 
 '''
-output message
 >>> ================================ RESTART ================================
 >>> 
-bce-auth-v1/5c5b5ea289ed4c6db75c131e7eaf5715/2017-12-03T08:10:49Z/1800//3bd006b14b63da9a1dd2ab715068c6e43458203ac31e884c75d7cec953060387
+bce-auth-v1/5c5b5ea289ed4c6db75c131e7eaf5715/2017-12-04T00:28:52Z/1800/host/52e4ca905caaff48bde728eaf42c9c6d39868ea12a20399164c9a10b57242b09
 
-GET /v1/metric HTTP/1.1
+GET /v1/metric HTTP/1.1
+Accept-Encoding: identity
+Host: zengjf.tsdb.iot.gz.baidubce.com
+Content-type: application/json; charset=utf-8
+Authorization: bce-auth-v1/5c5b5ea289ed4c6db75c131e7eaf5715/2017-12-04T00:28:52Z/1800/host/52e4ca905caaff48bde728eaf42c9c6d39868ea12a20399164c9a10b57242b09
+
 
-Host: zengjf.tsdb.iot.gz.baidubce.com
-
-Accept-Encoding: identity
-
-x-bce-date: 20171203T081049Z
-
-content-length: 0
-
-Content-type: application/json; charset=utf-8
-
-Authorization: bce-auth-v1/5c5b5ea289ed4c6db75c131e7eaf5715/2017-12-03T08:10:49Z/1800//3bd006b14b63da9a1dd2ab715068c6e43458203ac31e884c75d7cec953060387
-
-
-
-
-403 Forbidden
-{"requestId":"b9d3e0a5-7477-4a74-942f-ea1f1e88dd6d","code":"AccessDenied","message":"Verify access forbidden"}
->>> 
+200 OK
+{"metrics":["report"]}
+>>>  
 '''

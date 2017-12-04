@@ -50,6 +50,7 @@ TSDB数据库要求数据必须包含**metric**、**value**和**timestamp**三�
 * [生成认证字符串](https://cloud.baidu.com/doc/Reference/AuthenticationMechanism.html#1.1.20.E6.A6.82.E8.BF.B0)
 * [UNIX时间戳转换、UNIX时间戳普通时间相互转换、unix timestamp转换](https://1024tools.com/timestamp)
 * [百度物联网视频教程系列](https://cloud.baidu.com/forum/topic/show?topicId=36509)
+* [实战百度天工云](http://www.voidcn.com/article/p-aqgusabj-bqu.html)
 
 ![../img/Biadu_IoT_Hub_TSDB_Access_Key.png](../img/Biadu_IoT_Hub_TSDB_Access_Key.png)
 
@@ -63,28 +64,11 @@ TSDB数据库要求数据必须包含**metric**、**value**和**timestamp**三�
 * authStringPrefix: bce-auth-v1/5c5b5ea289ed4c6db75c131e7eaf5715/1511995554/1800
 * [Computed HMAC](https://www.freeformatter.com/hmac-generator.html#ad-output) SHA256: e2b3541551022677181eb4bacdfd1ea580cd26004adaffe2a1b5f1c8d9a11f7e
 * uri: /v1/metric
-* CanonicalRequest:
-  * sting
-    ```
-    HTTP POST 
-    /v1/metric
-    content-type: application%2Fjson; charset=utf-8
-    host: zengjf.tsdb.iot.gz.baidubce.com
-    ```
-  * a202f5b42ada8fbaab658507c17a294c18512d922e5172c0ea500124fbfdef87
-    
-bce-auth-v1/5c5b5ea289ed4c6db75c131e7eaf5715/1511995554/1800//a202f5b42ada8fbaab658507c17a294c18512d922e5172c0ea500124fbfdef87
-bce-auth-v1/5c5b5ea289ed4c6db75c131e7eaf5715/2017-11-29T22:45:54Z/1800//caca4da0578fb73654b764cf40dbd125a2a0f973abe62a76a3e814e29bdac903
 
+具体合成算法，请参阅下面代码：
 
-GET /v1/metric HTTP/1.1
-Host: zengjf.tsdb.iot.gz.baidubce.com
-Authorization: bce-auth-v1/5c5b5ea289ed4c6db75c131e7eaf5715/2017-11-29T22:45:54Z/1800//caca4da0578fb73654b764cf40dbd125a2a0f973abe62a76a3e814e29bdac903
-Content-Type: application/json; charset=utf-8
-x-bce-date: 2017-11-29T22:45:54Z
-Cache-Control: no-cache
-Postman-Token: e99cf04d-1bd2-e839-be7c-e43bde986288
+[../code/TSDB/sign_sample.py]
 
-'%sT%sZ' % (datetime.utcnow().strftime("%Y%m%d"), datetime.utcnow().strftime("%h%M%S"))
-'%sT%sZ' % (datetime.utcnow().strftime("%Y%m%d"), datetime.utcnow().strftime("%Y%m%d"))
-'%sT%sZ' % (datetime.utcnow().strftime("%Y%m%d"), datetime.utcnow().strftime("%H%M%S"))
+测试代码：
+
+[../code/TSDB/http_get.py]
