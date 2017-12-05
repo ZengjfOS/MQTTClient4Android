@@ -21,6 +21,8 @@
 
 ## SIM800C Test
 
+* SIM800C Connect And Connect ACK:
+  ![../img/Biadu_IoT_Hub_SIM800C_Connect_Return.png](../img/Biadu_IoT_Hub_SIM800C_Connect_Return.png)
 * UART Send Data Command:
   ![../img/Biadu_IoT_Hub_SIM800C_UART_Command.png](../img/Biadu_IoT_Hub_SIM800C_UART_Command.png)  
   ```
