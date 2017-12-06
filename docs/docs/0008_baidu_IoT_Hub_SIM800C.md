@@ -1,12 +1,15 @@
 # baidu IoT Hub SIM800C
 
+在测试TCP连接的时候可以TCP连接以后，发送0x1000两个字节数据（请看MQTT协议，理解两个字节代表的意思）给服务器，一般来说，由于没有提供认证信息，服务器会关闭TCP连接，SIM800C会反馈TCP连接中断，这样就知道服务器连接是否正常了。
+
 如下是SIM800C连接串口线连线图：
 
 ![../img/SIM800C_Module.jpg](../img/SIM800C_Module.jpg)
 
 ## WireShark Capture Data
 
-* Excute Python Script: [../code/IoT_Hub/publish.py](../code/IoT_Hub/publish.py)
+* Excute Python3 Script: [../code/IoT_Hub/publish.py](../code/IoT_Hub/publish.py)
+  * `pip3 install paho-mqtt`
 * Connect Data:
   ![../img/WiresharkConnectData.png](../img/WiresharkConnectData.png)  
   connect data: `106300044d51545404c2003c001144657669636549642d6278396e6476653200167a656e676a662f737a5f6d6f6e69746f725f726f6f6d002c51453042484676466e496b425249614a7450597a6f336d2f363345737635667a7a4d72397459564f73486f3d`  

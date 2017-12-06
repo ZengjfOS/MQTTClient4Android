@@ -14,6 +14,7 @@ MQTT基于TCP，实现了异步Pub/Sub。
 
 ## 二、Docs
 
+* [docs/0009_paho.mqtt.embedded-c.md](docs/0009_paho.mqtt.embedded-c.md)
 * [docs/0008_baidu_IoT_Hub_SIM800C.md](docs/0008_baidu_IoT_Hub_SIM800C.md)
 * [docs/0007_baidu_IoT_Hub_HTML5_MQTT.md](docs/0007_baidu_IoT_Hub_HTML5_MQTT.md)
 * [docs/0006_baidu_IoT_Hub_DB.md](docs/0006_baidu_IoT_Hub_DB.md)
