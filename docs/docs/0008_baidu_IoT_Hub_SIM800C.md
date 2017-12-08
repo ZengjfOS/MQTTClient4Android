@@ -1,10 +1,18 @@
 # baidu IoT Hub SIM800C
 
+[SIM800C Reference](../refers/SIM800_Series_AT_Command_Manual_V1.09.pdf)
+
 在测试TCP连接的时候可以TCP连接以后，发送0x1000两个字节数据（请看MQTT协议，理解两个字节代表的意思）给服务器，一般来说，由于没有提供认证信息，服务器会关闭TCP连接，SIM800C会反馈TCP连接中断，这样就知道服务器连接是否正常了。
 
 如下是SIM800C连接串口线连线图：
 
 ![../img/SIM800C_Module.jpg](../img/SIM800C_Module.jpg)
+
+## SIM800C Data Formate
+
+在发送数据给SIM800C的时候，看到很多地方都发送`\r\n`，貌似也不会有错，但是站在Datasheet的角度只要发送`\r`就行了，已经验证了。
+
+![../img/SIM800C_Send_Data_Format.jpg](../img/SIM800C_Send_Data_Format.jpg)
 
 ## WireShark Capture Data
 
