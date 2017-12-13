@@ -26,4 +26,4 @@ while True:
     msg = json.dumps(msg)
     print(mqttc.publish('test-iot-service', payload=msg))
     mqttc.loop(2)
-    time.sleep(2)
+    time.sleep(5)
