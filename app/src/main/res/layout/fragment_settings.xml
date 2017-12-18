@@ -7,37 +7,144 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <com.rey.material.widget.EditText
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/st_clientID"
-            android:hint="Client ID"
-            android:textSize="12pt"
-            app:et_labelEnable="true"
-            app:et_labelTextSize="12pt"
-            />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <com.rey.material.widget.EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/st_ServerIP"
-            android:hint="Client ID"
-            android:textSize="14pt"
-            app:et_labelEnable="true"
-            app:et_labelTextSize="14pt"
-            />
+            <com.rey.material.widget.EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/st_clientID"
+                android:hint="Client ID"
+                android:textSize="12pt"
+                app:et_labelEnable="true"
+                app:et_labelTextSize="12pt"
+                />
 
-        <com.rey.material.widget.Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/st_confirm"
-            android:text="Confirm"
-            app:rd_enable="true"/>
+            <com.rey.material.widget.EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/st_ServerIP"
+                android:hint="Server IP"
+                android:textSize="12pt"
+                app:et_labelEnable="true"
+                app:et_labelTextSize="12pt"
+                />
 
-    </LinearLayout>
+            <com.rey.material.widget.EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/st_ServerPort"
+                android:hint="Server Port"
+                android:textSize="12pt"
+                app:et_labelEnable="true"
+                app:et_labelTextSize="12pt"
+                />
+
+            <com.rey.material.widget.Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/st_advanced"
+                android:text="Advanced"
+                app:rd_enable="true"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:id="@+id/advanced_layout">
+
+                <com.rey.material.widget.EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/st_ad_username"
+                    android:hint="Username"
+                    android:textSize="12pt"
+                    app:et_labelEnable="true"
+                    app:et_labelTextSize="12pt"
+                    />
+
+                <com.rey.material.widget.EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/st_ad_passwd"
+                    android:hint="Password"
+                    android:textSize="12pt"
+                    app:et_labelEnable="true"
+                    app:et_labelTextSize="12pt"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <com.rey.material.widget.EditText
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:id="@+id/st_ad_SSLFile"
+                            android:hint="SSL File"
+                            android:textSize="12pt"
+                            app:et_labelEnable="true"
+                            app:et_labelTextSize="12pt"
+                            />
+
+                        <com.rey.material.widget.Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/st_ad_selectFile"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:text="File..."
+                            android:gravity="center"
+                            app:rd_enable="true"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <com.rey.material.widget.EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/st_ad_timeout"
+                    android:hint="Time Out"
+                    android:textSize="12pt"
+                    app:et_labelEnable="true"
+                    app:et_labelTextSize="12pt"
+                    />
+
+                <com.rey.material.widget.EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/st_ad_keepAliveTimeout"
+                    android:hint="Keep Alive Timeout"
+                    android:textSize="12pt"
+                    app:et_labelEnable="true"
+                    app:et_labelTextSize="12pt"
+                    />
+
+            </LinearLayout>
+
+            <com.rey.material.widget.Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/st_confirm"
+                android:text="Confirm"
+                app:rd_enable="true"/>
+
+        </LinearLayout>
+    </ScrollView>
 </FrameLayout>
