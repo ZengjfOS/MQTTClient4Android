@@ -60,17 +60,77 @@ C:\Users\aplex\Desktop\mqtt\docs\refers>java -jar sign-aas.jar --ak=5c5b5ea289ed
 * [../code/IoT_Visualization/sign-ass.py](../code/IoT_Visualization/sign-ass.py)
 * [../code/IoT_Visualization/bce_tokens.py](../code/IoT_Visualization/bce_tokens.py)
 
-## IoT Visualization
+## 布局示例
 
 ![../img/Biadu_IoT_Hub_IoT_VZ_UI.png](../img/Biadu_IoT_Hub_IoT_VZ_UI.png)
 
-## 网页独立部署
+## 网页独立部署方法
 
 * 下载[xampp](https://www.apachefriends.org/zh_cn/index.html)作为Web Server;
 * 设计UI界面，获取设计好的网页生成代码；
+  ```HTML
+  <html>
+      <head>
+          <!-- 加载 物可视SDK-->
+          <script type="text/javascript" src="//iot-dv.cdn.bcebos.com/prod/sdk/bdiotvizplayer.min.js"></script>
+          <style>
+              html, body {
+                  font-size: 12px;
+                  font-family: "PingFang SC";
+                  display: block;
+                  margin: 0;
+                  width: 100%;
+                  height: 100%;
+              }
+  
+              #content {
+                  width: 100%;
+                  height: 100%;
+              }
+          </style>
+      </head>
+  
+      <body>
+          <div id="content"></div>
+  
+          <script type="text/javascript">
+              const bdIotVizPlayer = window.BDIotVizPlayer;
+              const containerElement = document.getElementById('content');
+  
+              const myDashboard = bdIotVizPlayer({
+                  containerElement,
+                  dashboardId: '5a3071a915ce05525889e674',
+                  onload: function (api) {
+                      api.getPropsDef().then(function(propsDef){
+                          console.log(propsDef); // <--- All runtime properties
+                      });
+                      // refer to API doc for complete API description
+                  }
+              });
+          </script>
+      </body>
+  </html>
+  ```
 * 通过[sign-ass.py](../code/IoT_Visualization/sign-ass.py)获取Token；
-* 将Token加入HTML的Cookie中作为认证依据；
-* 以下示例中，请修改认证Token就能访问了。
-* [HTML index.html 示例](../code/IoT_Visualization/index.html)
-
-![../img/Biadu_VZ_Access_Success.png](../img/Biadu_VZ_Access_Success.png)
+  ```
+  D:\zengjf\SourceCode\Android\as\MQTT\docs\code\IoT_Visualization>sign-ass.py
+  
+  ('/tokens', '{"ttl": 36000}')
+  
+  POST /tokens HTTP/1.1
+  Host: 127.0.0.1:8080
+  Accept-Encoding: identity
+  Content-Length: 14
+  Content-type: application/json; charset=utf-8
+  
+  {"ttl": 36000}
+  
+  (200, 'OK')
+  
+  {"token":"bce_iot_viz_tokenC2NK9PMDNXETCTTDJFH0JJCPZW8WZ2GMGJLB8S2MIGCODSI7PZ5IILNI3OH3KIFB"}
+  ```
+* [HTML index.html 示例](../code/IoT_Visualization/index.html)；
+* 将上面sign-ass.py获取的Token替换掉HTML的Cookie中作为认证依据，主要是下面这行代码；  
+  `TOKEN_COOKIES_VALUE = "bce_iot_viz_tokenC2NK9PMDNXETCTTDJFH0JJCPZW8WZ2GMGJLB8S2MIGCODSI7PZ5IILNI3OH3KIFB";`
+* 将修改后的[index.html](../code/IoT_Visualization/index.html)部署与xampp Web Server中，使用浏览器（推荐Chrome）如下所示：
+  ![../img/Biadu_VZ_Access_Success.png](../img/Biadu_VZ_Access_Success.png)
