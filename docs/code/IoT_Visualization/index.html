@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <!-- 加载 物可视SDK-->
+        <script type="text/javascript" src="http://iot-dv.cdn.bcebos.com/prod/sdk/bdiotvizplayer.min.js"></script>
+        <style>
+            html, body {
+                font-size: 12px;
+                font-family: "PingFang SC";
+                display: block;
+                margin: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            #content {
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="content"></div>
+
+        <script type="text/javascript">
+            function setCookie(c_name,value,expiredays)
+            {
+                var exdate = new Date();
+                exdate.setDate(exdate.getDate() + expiredays);
+                document.cookie = c_name + "=" + escape(value) +
+                        ((expiredays==null) ? "" : ";expires="+exdate.toGMTString());
+            }
+
+            TOKEN_COOKIES = "x-bce-iot-viz-token"
+            TOKEN_COOKIES_VALUE = "bce_iot_viz_tokenC2NK9PMDNXETCTTDJFH0JJCPZW8WZ2GMGJLB8S2MIGCODSI7PZ5IILNI3OH3KIFB";
+            setCookie(TOKEN_COOKIES, TOKEN_COOKIES_VALUE);
+
+            const bdIotVizPlayer = window.BDIotVizPlayer;
+            const containerElement = document.getElementById('content');
+
+            const myDashboard = bdIotVizPlayer({
+                containerElement,
+                dashboardId: '5a3071a915ce05525889e674',
+                onload: function (api) {
+                    api.getPropsDef().then(function(propsDef){
+                        console.log(propsDef); // <--- All runtime properties
+                    });
+                    // refer to API doc for complete API description
+                }
+            });
+        </script>
+    </body>
+</html>
+

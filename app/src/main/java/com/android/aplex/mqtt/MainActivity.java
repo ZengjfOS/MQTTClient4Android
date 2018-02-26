@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements BaseBlankFragment
             }
         });
         thread.start();
+
     }
 
     @Override

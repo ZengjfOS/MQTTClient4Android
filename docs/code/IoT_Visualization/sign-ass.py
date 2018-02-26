@@ -20,7 +20,7 @@ patch_send()
 # send request
 query_data = json.dumps(
 {
-    "ttl": 3600
+    "ttl": 36000
 }
 )
 hdrs = {

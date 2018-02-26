@@ -4,10 +4,11 @@
 
 * [部署](https://cloud.baidu.com/doc/IOTVIZ/GettingStarted.html#.E5.90.8E.E7.AB.AF.E9.9B.86.E6.88.90)
 * [集成到 React 应用中](https://cloud.baidu.com/doc/IOTVIZ/BestPractise.html#.E4.BF.AE.E6.94.B9.E4.BB.A3.E7.A0.81)
+  * 这里一定要理解文中的**将Token写入Cookie**这部分；
 
 ## Token Tool Download
 
-* [sign-aas](http://iot-dv.cdn.bcebos.com/v2/sdk/sign-aas.jar)
+* [sign-aas Python3版本](http://iot-dv.cdn.bcebos.com/v2/sdk/sign-aas.jar)
 
 ## sign-aas help
 
@@ -50,12 +51,11 @@ java -jar sign-aas.jar [options] 配置文件.json
 C:\Users\aplex\Desktop\mqtt\docs\refers>java -jar sign-aas.jar --ak=5c5b5ea289ed4c6db75c131e7eaf5715 --sk=ca49ed4d426541e79f7da83fde4b9e28
 2017-12-13 09:46:41.731:INFO::main: Logging initialized @1155ms
 2017-12-13 09:46:43.597:INFO:oejs.Server:main: jetty-9.2.z-SNAPSHOT
-2017-12-13 09:46:44.063:INFO:oejs.ServerConnector:main: Started ServerConnector@
-1bd13f0c{HTTP/1.1}{localhost:8080}
+2017-12-13 09:46:44.063:INFO:oejs.ServerConnector:main: Started ServerConnector@1bd13f0c{HTTP/1.1}{localhost:8080}
 2017-12-13 09:46:44.065:INFO:oejs.Server:main: Started @3490ms
 ```
 
-## 处理方式
+## 获取Token的两种处理方式
 
 * [../code/IoT_Visualization/sign-ass.py](../code/IoT_Visualization/sign-ass.py)
 * [../code/IoT_Visualization/bce_tokens.py](../code/IoT_Visualization/bce_tokens.py)
@@ -63,3 +63,14 @@ C:\Users\aplex\Desktop\mqtt\docs\refers>java -jar sign-aas.jar --ak=5c5b5ea289ed
 ## IoT Visualization
 
 ![../img/Biadu_IoT_Hub_IoT_VZ_UI.png](../img/Biadu_IoT_Hub_IoT_VZ_UI.png)
+
+## 网页独立部署
+
+* 下载[xampp](https://www.apachefriends.org/zh_cn/index.html)作为Web Server;
+* 设计UI界面，获取设计好的网页生成代码；
+* 通过[sign-ass.py](../code/IoT_Visualization/sign-ass.py)获取Token；
+* 将Token加入HTML的Cookie中作为认证依据；
+* 以下示例中，请修改认证Token就能访问了。
+* [HTML index.html 示例](../code/IoT_Visualization/index.html)
+
+![../img/Biadu_VZ_Access_Success.png](../img/Biadu_VZ_Access_Success.png)
