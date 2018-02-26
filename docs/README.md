@@ -1,6 +1,9 @@
-# MQTT Demo
+# MQTT Learning Docs
 
 MQTT基于TCP，实现了异步Pub/Sub。
+
+**简单HTML示例代码**  
+[code/html/ShowTime](code/html/ShowTime)
 
 ## 一、参考文章：
 
@@ -11,6 +14,8 @@ MQTT基于TCP，实现了异步Pub/Sub。
 * [This is an example of how use the MQTT protocol with ActiveMQ.](https://github.com/apache/activemq/tree/master/assembly/src/release/examples/mqtt/java)
 * [【MQTT應用學習系列（一）】Apollo代理+paho](http://www.itread01.com/articles/1488211049.html)
 * [MQTT比TCP协议好在哪儿？](https://www.zhihu.com/question/23373904)
+* [Topic 通配符](https://www.ibm.com/support/knowledgecenter/zh/SSCGGQ_1.2.0/com.ibm.ism.doc/Overview/ov00032.html)
+* [AWS IoT 开发物联网之MQTT——Hello,World](https://www.phodal.com/blog/aws-iot-development-iot-application-mqtt/)
 
 ## 二、Docs
 
