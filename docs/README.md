@@ -19,6 +19,7 @@ MQTT基于TCP，实现了异步Pub/Sub。
 
 ## 二、Docs
 
+* [docs/0012_baidu_IoT_EMQTT_Retained_Message.md](docs/0012_baidu_IoT_EMQTT_Retained_Message.md)
 * [docs/0011_baidu_IoT_Visualization.md](docs/0011_baidu_IoT_Visualization.md)
 * [docs/0010_paho.mqtt.embedded-c_STM32.md](docs/0010_paho.mqtt.embedded-c_STM32.md)
 * [docs/0009_paho.mqtt.embedded-c.md](docs/0009_paho.mqtt.embedded-c.md)
